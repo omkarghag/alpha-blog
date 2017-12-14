@@ -14,8 +14,15 @@ Rails.application.routes.draw do
  
  # For new users signup
  get 'signup', to: 'users#new'
- 
+
+#For  creating default routes other than 'new' for users which we already created          
  resources :users, except: [:new]
+ 
+#Adding login and logout functionality, building the routes manually:
+
+get 'login', to: 'sessions#new'
+post 'login', to: 'sessions#create'
+delete 'logout', to: 'sessions#destroy'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
