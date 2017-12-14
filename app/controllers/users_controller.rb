@@ -13,8 +13,9 @@ class UsersController < ApplicationController
    # render plain: params[:user].inspect #see what data gets passed
     @user = User.new(user_params)
     if @user.save
+      session[:user_id] = @user.id #added so that user doesn't have to log in again after signup
       flash[:success] = "Welcome to the Alpha Blog  #{@user.username}"
-      redirect_to articles_path
+      redirect_to user_path(@user)
     else
       render 'new'
     end
